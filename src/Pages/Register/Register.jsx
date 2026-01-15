@@ -1,23 +1,21 @@
 import React from 'react';
-import { auth } from '../../components/firebase/firebase.config';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '../../Contacts/AuthContext';
 
 const Register = () => {
+
+    const{register} = useAuth();
+
     const handleSubmit = e => {
         e.preventDefault();
 
         console.log('from submited');
 
-        const name = e.target.name.value;
+       // const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log(name, email, password);
-
-        createUserWithEmailAndPassword(auth, email, password).then((userCredential) =>{
-            const user = userCredential.user;
-            console.log(user);
-        })
+        register(email,password);
+       
     }
 
     return (

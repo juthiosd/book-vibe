@@ -1,3 +1,71 @@
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../components/firebase/firebase.config";
+import AuthContext from "./AuthContext";
+import { useEffect, useState } from "react";
+
+
+
+const AuthProvider = ({children}) =>{
+    const [user, setUser] = useState(null);
+
+     const register= (email,password) =>{
+        return createUserWithEmailAndPassword (auth, email,
+            password)
+     }
+
+     useEffect(() =>{
+
+        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+            setUser(currentUser);
+        })
+        return () =>unsubscribe();
+     },[])
+     
+    
+    const value = {
+        user,
+        register
+    };
+
+    
+    return(
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+
+export default AuthProvider;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { Children, createContext, useContext } from 'react';
 // import { auth } from '../components/firebase/firebase.config';
 

@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { useAuth } from '../../Contacts/AuthContext';
+
 
 const Navbar = () => {
+
+  const {user}   = useAuth()
+
+  console.log(user);
+
+
     return (
         <div> 
          <div className="navbar bg-base-100 shadow-sm">
