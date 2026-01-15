@@ -5,10 +5,13 @@ import { useAuth } from '../../Contacts/AuthContext';
 
 const Navbar = () => {
 
-  const {user}   = useAuth()
+  const {user,logout}   = useAuth();
 
-  console.log(user);
-
+  // console.log('user',user);
+  // console.log('user email',user.email);
+const handleLogout =() =>{
+  logout()
+}
 
     return (
         <div> 
@@ -44,8 +47,7 @@ const Navbar = () => {
   <div className="navbar-end gap-2">
     <Link to='/register' className="btn bg-green-600 text-white rounded-2xl">
     Register</Link>
-    <Link to='/Login' className="btn bg-cyan-500 text-white rounded-2xl">
-    Login</Link>
+    <Link to='/Login'onClick={handleLogout} className="btn bg-cyan-500 text-white rounded-2xl">{user ? 'Logout' : 'Login'}</Link>
   </div>
 </div>
      </div>

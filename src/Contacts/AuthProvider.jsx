@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged,singInWithEmailAndpassword } from "firebase/auth";
 import { auth } from "../components/firebase/firebase.config";
 import AuthContext from "./AuthContext";
 import { useEffect, useState } from "react";
@@ -20,11 +20,21 @@ const AuthProvider = ({children}) =>{
         })
         return () =>unsubscribe();
      },[])
+
+     const logout = () =>{
+        return auth.signOut();
+     }
      
     
+     const login = (email,password) =>{
+        return singInWithEmailAndpassword(auth, email, -password);
+     }
+     
     const value = {
         user,
-        register
+        register,
+        logout,
+        login
     };
 
     
