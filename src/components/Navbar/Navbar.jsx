@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Navbar = () => {
     return (
@@ -27,14 +28,16 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li className='text-green-500'><a>Home</a></li>
+      <li className='text-green-500'><Link to='/'>Home</Link></li>
       <li><a>Listen Books</a></li>
       <li><a>Pages to Reads</a></li> 
     </ul>
   </div>
   <div className="navbar-end gap-2">
-    <a className="btn bg-green-600 text-white rounded-2xl">Sign In</a>
-    <a className="btn bg-cyan-500 text-white rounded-2xl">Sign Out</a>
+    <Link to='/register' className="btn bg-green-600 text-white rounded-2xl">
+    Register</Link>
+    <Link to='/Login' className="btn bg-cyan-500 text-white rounded-2xl">
+    Login</Link>
   </div>
 </div>
      </div>
